@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import './App.css';
 
 import firebase from 'firebase/app'
@@ -7,6 +7,9 @@ import "firebase/auth";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
+
+import { Avatar } from "@material-ui/core"
+import { Button, Container, Nav, Form, Col, Row } from 'react-bootstrap';
 
 firebase.initializeApp({
   apiKey: "AIzaSyAft9bqHv2DBhI2bNgrFJij5fNAMBil2ww",
@@ -25,16 +28,13 @@ function App() {
 
   const [user] = useAuthState(auth);
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <SignOut />
-      </header>
-
+  return (<>
+    <Container maxWidth="sm">
       <section>
         {user ? <ChatRoom /> : <SignIn />}
       </section>
-    </div>
+    </Container>
+  </>
   );
 }
 
@@ -51,11 +51,13 @@ function SignIn() {
 
 function SignOut() {
   return auth.currentUser && (
-    <button onClick={() => auth.signOut()}>Sign Out</button>
+    <Button className="signout" variant="danger" onClick={() => auth.signOut()}>Sign Out</Button>
   )
 }
 
 function ChatRoom() {
+
+  const autoscroll = useRef()
 
   const messagesRef = firestore.collection("messages");
   const query = messagesRef.orderBy("createdAt").limit(30);
@@ -75,17 +77,28 @@ function ChatRoom() {
       photoURL
     })
     setMessageText("");
+    autoscroll.current.scrollIntoView({ behavior: "smooth" })
   }
 
   return (
     <>
+      <div className="topnav">
+        <SignOut />
+      </div>
       <div>
         {messages && messages.map(msg => <Message key={msg.id} message={msg} />)}
+        <div ref={autoscroll}></div>
       </div>
 
-      <form onSubmit={sendMessage}>
-        <input value={messageText} onChange={(e) => setMessageText(e.target.value)} />
-        <button type="submit">✔</button>
+      <form className="inputfields" onSubmit={sendMessage}>
+        <Row>
+          <Col xs="10">
+            <Form.Control type="text" value={messageText} onChange={(e) => setMessageText(e.target.value)} />
+          </Col>
+          <Col xs="2">
+            <Button type="submit">Send </Button>
+          </Col>
+        </Row>
       </form>
     </>
   )
@@ -98,8 +111,8 @@ function Message(props) {
   const messageClass = uid === auth.currentUser.uid ? "sent" : "recived";
 
   return (
-    <div>
-      <img src={photoURL} />
+    <div className={`message ${messageClass}`}>
+      <Avatar src={photoURL} />
       <p>{text}</p>
     </div>
   )
