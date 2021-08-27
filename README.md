@@ -5,7 +5,7 @@ It was made using React and Firebase.
 There is currently no version live on the web, but it also works if you start it on your local Computer.
 
 ### How to use it
-#### Clone this Repository to your local Computer
+<p> Clone this Repository to your local Computer </p>
 #### Run "npm i" (make sure to have Node installed)
 #### Run npm start
 #### You should see the app running on localhost:3000
