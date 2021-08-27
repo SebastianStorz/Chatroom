@@ -6,7 +6,7 @@ There is currently no version live on the web, but it also works if you start it
 
 ### How to use it
 <p> Clone this Repository to your local Computer </p>
-<p> Run "npm i" (make sure to have Node installed) </p>
-<p> Run npm start </p>
+<p> Run `npm i` (make sure to have Node installed) </p>
+<p> Run `npm start` </p>
 <p> You should see the app running on localhost:3000 </p> 
 <p> The app automatically connects itself to the Database </p>
