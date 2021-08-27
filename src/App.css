@@ -1,12 +1,88 @@
-.topnav{
-  background-color: white;
+
+.anker{
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.image{
+  height: 40px;
+}
+
+.fixed-top-right{
+  position:fixed;
+  margin-top:10px !important;
+  max-width: 500px;
+  width: 100%;
   display: flex;
   justify-content: flex-end;
-  padding: 10px;
-  border-radius: 20px;
+  padding-right: 10px !important;
+}
+
+.fixed-bottom{
+  position:fixed;
+  max-width: 500px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5px;
+  display: flex;
 }
 
 .signout{
-  margin-right: 3vw;
+  margin: 0px !important;
   border-radius: 20px !important;
+  z-index: 100000 !important;
+}
+
+.MuiAvatar-root{
+  z-index: 20 !important;
+}
+
+.message{
+  display: flex;
+  margin-bottom: 5px;
+  
+}
+.recived{
+  justify-content: flex-start;
+}
+.sent {
+  justify-content: flex-end; 
+}
+.sent .text{
+  background-color: lightpink;
+}
+
+.text {
+  vertical-align: middle;
+  margin-left: 5px;
+  background-color: lightblue;
+  border-radius: 0px 15px 15px 15px;
+  padding:10px;
+}
+.text p{
+  margin: 0px;
+  height: 100%;
+  vertical-align: middle;
+  word-wrap: break-word;
+  max-width: 250px;
+}
+
+.btn{
+  border-radius: 15px !important;
+}
+
+.messages {
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 10px;
+  margin-bottom: 100px;
+}
+
+
+.signIn{
+  display: flex;
+  justify-content: center;
+  margin-top: 90vh;
 }
